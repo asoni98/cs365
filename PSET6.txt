@@ -1,0 +1,160 @@
+PSET 6
+
+1)
+invariants: 
+a) cr(u,v) = c(u,v) - f(u,v)
+b) cr(v,u) = f(u,v)
+
+if (x,y) is backwards: 
+	fnew(y,x) = fold(y,x) - b (code)
+	
+	Crnew(x,y) = Crold(x,y) - b (code)
+	sub Crold(x,y) into invariant b to get fold(x,y)
+	Crnew(x,y) = fold(x,y) - b = fnew(y,x)
+	Crnew(x,y) = fnew(y,x)  
+	This is correct. It matches the form of invariant b. v is x and u is y.  
+
+	Crnew(y,x) = Crold(y,x) + b (code)
+	sub Crold(y,x) into invariant a to get c(y,x) - fold(y,x)
+	Crnew(y,x) = c(y,x) - fold(y,x) + b
+	Crnew(y,x) = c(y,x) - fnew(y,x) 
+	This is correct. It matches the form of invariant a
+
+2)
+M W E 
+flow questions only deal with integer values (so each value can be 0 or 1) 
+everything has a capacity of 1
+
+duplicate W nodes and direct W to the duplicated W and it has max flow 1 (edge capacity) 
+
+explain how each node is at most 1 (0 or 1). reason for machinsts is the same as class 
+machinsts only inflow is from the source (max 1) so outflow has to be 1
+welder node (flow )
+electrians max flow out is 1 so their max inflow must be 1. 
+
+ford-fulkerson outputs the max flow (max number of matchings). paths are the matchings. 
+whole explanation how its a valid matching: 
+flow thourhg the vertex is 1. you won't have one guy assigned to multiple teams. 
+only way people can be matched is if they have an edge and only way they have an edge is if they can be matched. 
+
+number of paths is equal to the number of matchings because each path has one of each node and none of them will be repeated. no vertex will be repeated between two paths. 
+max flow of n must have n paths. 
+
+For a team to be valid:
+There must be a machinist, welder, and electrician
+
+3)
+In class we showed:
+3-SAT<=p Independent Set (8.8) (prove this is in NP)
+IS <= p VC (8.4)
+
+transitivity
+If we can solve independent set in polynomial time then we solve 
+
+
+construct a graph and pick an integer k
+
+
+
+not necessary to say: B is NP complete
+two steps to prove something is np complete: 
+prove it is np (show B is in NP). someone gives you a solution. show that you can verify it in polynomial time. 
+2) A <=p B where A is anything NP-complete
+
+
+
+4) 
+HP <=p AHP. If we can solve AHP, we can solve HP. We can do that through our construction.
+
+We assume knowledge of approx hamiltonian black box solution. 
+
+
+
+
+Idea: 
+We want to make a scenario such that the special vertewx is outside of G. THis is so everything that happens within G is a normal hamiltonian. Also, you can't start inside of the cycle, because then you miss stuff. 
+But you need multiple edges going from the special vertex to G. Else, the ingle vertext that you start at has to be the start.
+The not special node has to be connected to everywhere in the graph. so that you can start anywhere.
+
+Step 1
+Show Approx-HP is NP
+1. Verification of algorithm, polynomial time (approx-HP is NP)
+2. HP <= P approx-HP
+
+Step 2
+Make construction
+
+Step 3
+Explain
+1. If g' has an AHP, then G must have HP.
+2. If g' does not have an AHP, then G does not have HP.
+
+1. Proof i in th epath. Given the graph and the proof, one can check if the graph is approx-HP inpolunomial time.
+ALgo: Follow path proof given in graph and mark each vertex and edge that is touched. Have a flag that keeps track of when a vertex is touched there. After that, vertices cannot be touched more than once. Edges can't be touched more than once.
+One the path is run through, check if there are any unified vertices in the graph.
+If so, return false. Else, return true.
+
+If there exists a Hamiltonian path, then this construction will find it. If there does not exist a Hamiltonian, then there is no AHP.
+1. If there is an AHP in G' then there is an HP in G
+2. If there is no AHP in G', then no HP in G
+
+2. Have to show that AHP is NP. Which is easy to do.
+Construct G'
+Vertex outside of G that has an edge to every vertex in G. Then, the outer structure that has the center vertex covered twice.
+
+* - SPECIAL* - - * - - - G  
+   / \
+  * - *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hamilton paths
+approx hamilton allows you to use a path multiple times 
+
+A <=p B (HP <=p AHP) 
+A reduces to B 
+if you can solve B you can solve A
+start the hamiltonian path at any vertex 
+add an edge to everyone. 
+explain why a certain vertex is the special vertex. if there is a vertex that is visited more than once it has to be that one 
+
+1) Approx is NP (show this). we can verify the answer in polynomial time. 
+2) HP <=p AHP 
+
+
+Show:
+g is the original graph. g' is the modified graph
+If there is an approx hamilton path in g', then HP in g  
+If there is no approx hamilton path in g, then there is no HP 
